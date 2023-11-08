@@ -14,5 +14,6 @@ public class PetCategory
     public int AnimalTypeId { get; set; }
     public AnimalType AnimalType { get; set; }
 
-
+    public ICollection<Pet> Pets { get; set; }
+   
 }

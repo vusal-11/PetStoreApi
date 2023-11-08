@@ -1,0 +1,14 @@
+C:\Users\user\source\repos\PetStoreApi\PetsData\bin\Debug\net7.0\PetsData.deps.json
+C:\Users\user\source\repos\PetStoreApi\PetsData\bin\Debug\net7.0\PetsData.dll
+C:\Users\user\source\repos\PetStoreApi\PetsData\bin\Debug\net7.0\PetsData.pdb
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\PetsData.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\PetsData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\PetsData.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\PetsData.AssemblyInfo.cs
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\PetsData.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\PetsData.dll
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\refint\PetsData.dll
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\PetsData.pdb
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\ref\PetsData.dll
+C:\Users\user\source\repos\PetStoreApi\PetsData\bin\Debug\net7.0\PetsData.runtimeconfig.json
+C:\Users\user\source\repos\PetStoreApi\PetsData\obj\Debug\net7.0\PetsData.genruntimeconfig.cache

@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PetsData.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +23,23 @@ public class PetDbContext : DbContext
 
     public DbSet<ProductType> ProductTypes { get; set; }
 
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+
+        var config = new ConfigurationBuilder()
+            .AddUserSecrets<PetDbContext>()
+            .Build();
+
+
+
+        var connectionString = config["PetsData:DefaultConnection"];
+
+
+        optionsBuilder.UseSqlServer(connectionString);
+
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         
@@ -32,28 +51,16 @@ public class PetDbContext : DbContext
 
         animalTypeEntity
             .HasKey(x => x.Id);
-
-        animalTypeEntity
-            .Property(x => x.Id)
-            .ValueGeneratedOnAdd();
-
         animalTypeEntity
             .Property(x => x.Name)
-            .HasMaxLength(30)
             .IsRequired();
 
         //------------------------------//
 
         productTypesEntity
            .HasKey(x => x.Id);
-
-        productTypesEntity
-            .Property(x => x.Id)
-            .ValueGeneratedOnAdd();
-
         productTypesEntity
             .Property(x => x.Name)
-            .HasMaxLength(30)
             .IsRequired();
 
 
@@ -61,14 +68,8 @@ public class PetDbContext : DbContext
 
         productCategoriesEntity
            .HasKey(x => x.Id);
-
-        productCategoriesEntity
-            .Property(x => x.Id)
-            .ValueGeneratedOnAdd();
-
         productCategoriesEntity
             .Property(x => x.Name)
-            .HasMaxLength(30)
             .IsRequired();
         
 
@@ -77,17 +78,43 @@ public class PetDbContext : DbContext
         
         petCategoriesEntity
             .HasKey (x => x.Id);
-
-        petCategoriesEntity
-            .Property (x => x.Id)
-            .ValueGeneratedOnAdd();
-
         petCategoriesEntity
             .Property(x => x.Name)
-            .HasMaxLength (30)
             .IsRequired ();
+        petCategoriesEntity
+            .HasOne(x => x.AnimalType)
+            .WithOne(x => x.Pet)
+            .HasForeignKey<AnimalType>(x => x.PetId);
 
+
+        petCategoriesEntity.HasMany(x => x.Pets)
+            .WithOne(x => x.PetCategory)
+            .HasForeignKey(x => x.PetCategoryId);
         
+
+        //-----------------------------------------//
+
+
+        modelBuilder.Entity<Pet>().HasKey(x => x.Id);
+
+        modelBuilder.Entity<Pet>(x =>
+        {
+            x.Property(x => x.Name).IsRequired();
+            x.Property(x => x.Age).IsRequired();
+            x.Property(x => x.Price).IsRequired();
+            x.Property(x => x.Color).IsRequired();
+
+        });
+
+        modelBuilder.Entity<Pet>()
+            .HasMany(x => x.PetCategories)
+            .WithOne(x => x.Pet)
+            .HasForeignKey(x => x.PetId);   
+
+        //----------------------------------//
+
+
+
 
     }
 
