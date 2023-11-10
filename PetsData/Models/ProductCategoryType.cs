@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace PetsData.Models;
 
-public class ProductType
+public class ProductCategoryType
 {
+
     public int Id { get; set; }
     public string Name { get; set; }
+
+    public ICollection<ProductCategory> ProductCategories { get; set; }
+
 
 
 

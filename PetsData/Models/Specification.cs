@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace PetsData.Models;
 
-public class PetCategory
+public class Specification
 {
+
     public int Id { get; set; }
     public string Name { get; set; }
 
-    public AnimalType AnimalType { get; set; }
-    public int AnimalTypeId { get; set; }
+    public ICollection<ProductSpecification> ProductSpecifications { get; set; }   
 
-    public ICollection<Pet> Pets { get; set; }
 
-    //public ICollection<Pet> Pets { get; set; }
 
 }

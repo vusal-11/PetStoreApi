@@ -11,8 +11,13 @@ public class ProductCategory
     public int Id { get; set; }
     public string Name { get; set; }
 
-    public ICollection<AnimalType> AnimalTypes { get; set; }
 
-    public ICollection<ProductType> ProductType { get; set; }
+
+    public ProductCategoryType ProductCategoryType { get; set; }
+    public int ProductCategoryTypeId  { get; set; }
+
+    public ICollection<Product> Products { get; set; }
+
+    public ICollection<ProductSpecification> ProductSpecifications { get; set; }
 
 }
