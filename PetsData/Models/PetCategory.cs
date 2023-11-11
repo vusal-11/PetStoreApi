@@ -16,6 +16,6 @@ public class PetCategory
 
     public ICollection<Pet> Pets { get; set; }
 
-    //public ICollection<Pet> Pets { get; set; }
+    public ICollection<ProductCategory> ProductCategories { get; set; }
 
 }

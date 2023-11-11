@@ -29,21 +29,26 @@ public class PetDbContext : DbContext
     public DbSet<Specification> Specifications { get; set; }
 
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public PetDbContext(DbContextOptions options) : base(options)
     {
-
-        var config = new ConfigurationBuilder()
-            .AddUserSecrets<PetDbContext>()
-            .Build();
-
-
-
-        var connectionString = config["PetsData:DefaultConnection"];
-
-
-        optionsBuilder.UseSqlServer(connectionString);
-
+        
     }
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+
+    //    var config = new ConfigurationBuilder()
+    //        .AddUserSecrets<PetDbContext>()
+    //        .Build();
+
+
+
+    //    var connectionString = config["PetsData:DefaultConnection"];
+
+
+    //    optionsBuilder.UseSqlServer(connectionString);
+
+    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -96,7 +101,6 @@ public class PetDbContext : DbContext
         {
             x.Property(x => x.Name).IsRequired();
             x.Property(x => x.Age).IsRequired();
-            x.Property(x => x.Price).IsRequired();
             x.Property(x => x.Color).IsRequired();
 
         });
@@ -134,6 +138,11 @@ public class PetDbContext : DbContext
             .WithMany(x => x.ProductCategories)
             .HasForeignKey(x => x.ProductCategoryTypeId);
 
+
+        productCategoryEntity
+            .HasOne(x => x.PetCategory)
+            .WithMany(x => x.ProductCategories)
+            .HasForeignKey(x => x.PetCategoryId);
 
         //--------------------------------//
 

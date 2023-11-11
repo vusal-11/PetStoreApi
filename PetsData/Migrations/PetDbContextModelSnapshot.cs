@@ -60,9 +60,6 @@ namespace PetsData.Migrations
                     b.Property<int>("PetCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -142,10 +139,15 @@ namespace PetsData.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PetCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductCategoryTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PetCategoryId");
 
                     b.HasIndex("ProductCategoryTypeId");
 
@@ -256,11 +258,19 @@ namespace PetsData.Migrations
 
             modelBuilder.Entity("PetsData.Models.ProductCategory", b =>
                 {
+                    b.HasOne("PetsData.Models.PetCategory", "PetCategory")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("PetCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("PetsData.Models.ProductCategoryType", "ProductCategoryType")
                         .WithMany("ProductCategories")
                         .HasForeignKey("ProductCategoryTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PetCategory");
 
                     b.Navigation("ProductCategoryType");
                 });
@@ -292,6 +302,8 @@ namespace PetsData.Migrations
             modelBuilder.Entity("PetsData.Models.PetCategory", b =>
                 {
                     b.Navigation("Pets");
+
+                    b.Navigation("ProductCategories");
                 });
 
             modelBuilder.Entity("PetsData.Models.Product", b =>

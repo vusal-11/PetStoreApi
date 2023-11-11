@@ -1,3 +1,7 @@
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using PetsData.DbContexts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +13,16 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(ops =>
         ops.AddPolicy("AllowAnyOrigins", builder => builder.AllowAnyOrigin()));
+
+
+builder.Services.AddDbContext<PetDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration["DefaultConnection"]);
+});
+
+
+
+
 
 var app = builder.Build();
 

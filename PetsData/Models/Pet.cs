@@ -13,13 +13,12 @@ public class Pet
     public string Name { get; set; }
     public int Age { get; set; }
     public string Color { get; set; }
-    public float Price { get; set; }
 
-    public Product Product { get; set; }
-    public int ProductId { get; set; }
     public PetCategory PetCategory { get; set; }
 
     public int PetCategoryId { get; set; }
+    public Product Product { get; set; }
+    public int ProductId { get; set; }
     //public ICollection<PetCategory> PetCategories { get; set; }
 
 
