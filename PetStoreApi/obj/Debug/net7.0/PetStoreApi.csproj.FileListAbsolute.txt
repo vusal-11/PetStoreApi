@@ -72,3 +72,15 @@ C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\runtimes\win
 C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\PetsData.dll
 C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\PetsData.pdb
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Humanizer.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\System.CodeDom.dll
