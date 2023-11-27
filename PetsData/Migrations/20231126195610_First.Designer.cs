@@ -11,7 +11,7 @@ using PetsData.DbContexts;
 namespace PetsData.Migrations
 {
     [DbContext(typeof(PetDbContext))]
-    [Migration("20231110201823_First")]
+    [Migration("20231126195610_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -62,9 +62,6 @@ namespace PetsData.Migrations
 
                     b.Property<int>("PetCategoryId")
                         .HasColumnType("int");
-
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -126,6 +123,10 @@ namespace PetsData.Migrations
                     b.Property<int>("ProductCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Specifications")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProductCategoryId");
@@ -145,10 +146,15 @@ namespace PetsData.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PetCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductCategoryTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PetCategoryId");
 
                     b.HasIndex("ProductCategoryTypeId");
 
@@ -170,50 +176,6 @@ namespace PetsData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductCategoryTypes");
-                });
-
-            modelBuilder.Entity("PetsData.Models.ProductSpecification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpecificationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductCategoryId");
-
-                    b.HasIndex("SpecificationId");
-
-                    b.ToTable("ProductSpecifications");
-                });
-
-            modelBuilder.Entity("PetsData.Models.Specification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Specifications");
                 });
 
             modelBuilder.Entity("PetsData.Models.Pet", b =>
@@ -259,32 +221,21 @@ namespace PetsData.Migrations
 
             modelBuilder.Entity("PetsData.Models.ProductCategory", b =>
                 {
+                    b.HasOne("PetsData.Models.PetCategory", "PetCategory")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("PetCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("PetsData.Models.ProductCategoryType", "ProductCategoryType")
                         .WithMany("ProductCategories")
                         .HasForeignKey("ProductCategoryTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("PetCategory");
+
                     b.Navigation("ProductCategoryType");
-                });
-
-            modelBuilder.Entity("PetsData.Models.ProductSpecification", b =>
-                {
-                    b.HasOne("PetsData.Models.ProductCategory", "ProductCategory")
-                        .WithMany("ProductSpecifications")
-                        .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PetsData.Models.Specification", "Specification")
-                        .WithMany("ProductSpecifications")
-                        .HasForeignKey("SpecificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductCategory");
-
-                    b.Navigation("Specification");
                 });
 
             modelBuilder.Entity("PetsData.Models.AnimalType", b =>
@@ -295,6 +246,8 @@ namespace PetsData.Migrations
             modelBuilder.Entity("PetsData.Models.PetCategory", b =>
                 {
                     b.Navigation("Pets");
+
+                    b.Navigation("ProductCategories");
                 });
 
             modelBuilder.Entity("PetsData.Models.Product", b =>
@@ -304,19 +257,12 @@ namespace PetsData.Migrations
 
             modelBuilder.Entity("PetsData.Models.ProductCategory", b =>
                 {
-                    b.Navigation("ProductSpecifications");
-
                     b.Navigation("Products");
                 });
 
             modelBuilder.Entity("PetsData.Models.ProductCategoryType", b =>
                 {
                     b.Navigation("ProductCategories");
-                });
-
-            modelBuilder.Entity("PetsData.Models.Specification", b =>
-                {
-                    b.Navigation("ProductSpecifications");
                 });
 #pragma warning restore 612, 618
         }

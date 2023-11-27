@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PetsData.DbContexts;
 using PetStoreApi.DbContexts;
+using PetStoreApi.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,18 +17,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 builder.Services.AddCors(ops =>
         ops.AddPolicy("AllowAnyOrigins", builder => builder.AllowAnyOrigin()));
 
+builder.Services.AddScoped<ITokenService,TokenService>();
 
 builder.Services.AddDbContext<PetDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration["DefaultConnection"]);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaulConnection"));
 });
 
 builder.Services.AddDbContext<UsersContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration["UserDefaultConnection"]);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UserDefaultConnection"));
 });
 
 builder.Services
@@ -44,8 +48,8 @@ builder.Services
                 ValidIssuer = "apiWithAuthBackend",
                 ValidAudience = "apiWithAuthBackend",
                 IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["IssuerKey"]))
-        };
+                Encoding.UTF8.GetBytes(builder.Configuration.GetConnectionString("IssuerKey"))),
+            };
     });
 
 
