@@ -93,7 +93,7 @@ public class AuthController : ControllerBase
 
         var accessToken = _tokenService.CreateToken(userInDb);
 
-        var identityLogin = 
+        //var identityLogin = 
 
         await _context.SaveChangesAsync();
 

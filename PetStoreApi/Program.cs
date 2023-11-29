@@ -26,12 +26,12 @@ builder.Services.AddScoped<ITokenService,TokenService>();
 
 builder.Services.AddDbContext<PetDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaulConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionRemote"));
 });
 
 builder.Services.AddDbContext<UsersContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("UserDefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionRemote"));
 });
 
 builder.Services
@@ -68,6 +68,7 @@ builder.Services
 
 
 
+
     })
     .AddEntityFrameworkStores<UsersContext>();
 
@@ -77,11 +78,10 @@ builder.Services
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 
 app.UseCors("AllowAnyOrigins");
