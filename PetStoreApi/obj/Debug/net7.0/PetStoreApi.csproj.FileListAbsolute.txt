@@ -84,3 +84,10 @@ C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.En
 C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\user\source\repos\PetStoreApi\PetStoreApi\bin\Debug\net7.0\StackExchange.Redis.dll

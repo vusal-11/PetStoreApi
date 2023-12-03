@@ -10,16 +10,10 @@ public class ProductCategory
 {
     public int Id { get; set; }
     public string Name { get; set; }
-
-
-
     public ProductCategoryType ProductCategoryType { get; set; }
     public int ProductCategoryTypeId  { get; set; }
-
     public PetCategory PetCategory { get; set; }
-
     public int PetCategoryId { get; set; }
-
     public ICollection<Product> Products { get; set; }
 
 

@@ -21,9 +21,9 @@ public class AuthController : ControllerBase
 
     private readonly UsersContext _context;
 
-    private readonly ITokenService _tokenService;
+    private readonly ITokenManagerService _tokenService;
 
-    public AuthController(UserManager<IdentityUser> userManager,ITokenService tokenService,UsersContext context)
+    public AuthController(UserManager<IdentityUser> userManager,ITokenManagerService tokenService,UsersContext context)
     {
         
         _userManager = userManager;
