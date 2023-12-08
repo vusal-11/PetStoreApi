@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using PetStoreApi.Models.JWT;
 
 namespace PetStoreApi.Services;
 
@@ -13,5 +14,6 @@ public interface ITokenManagerService
     Task DeactivateAsync(string token);
 
     public string CreateToken(IdentityUser user);
+
 
 }

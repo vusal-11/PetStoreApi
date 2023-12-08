@@ -14,7 +14,7 @@ public class TokenManagerMiddleware : IMiddleware
     
     public async Task InvokeAsync(HttpContext context,RequestDelegate next)
     {
-        if(await _tokenManager.IsCurrentActiveTokenAsync())
+        if (await _tokenManager.IsCurrentActiveTokenAsync())
         {
             await next(context);
             return;

@@ -97,14 +97,7 @@ public class AuthController : ControllerBase
 
         await _context.SaveChangesAsync();
 
-        return Ok(new AuthResponse
-        {
-
-            Username = userInDb.UserName,
-            Email = userInDb.Email,
-            Token = accessToken
-
-        });
+        return Ok(new {token=accessToken});
         
 
     }

@@ -25,43 +25,6 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
 
-        // Add services to the container.
-
-        services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-       services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
-
-
-
-        services.AddCors(ops =>
-                ops.AddPolicy("AllowAnyOrigins", builder => builder.AllowAnyOrigin()));
-
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-
-        //Redis
-
-        services.AddStackExchangeRedisCache(options =>
-        {
-            options.Configuration = _configuration.GetConnectionString("Redis");
-            options.InstanceName = "PetStoreApi";
-        });
-
-
-        //DbContext
-
-        services.AddDbContext<PetDbContext>(options =>
-        {
-            options.UseSqlServer(_configuration.GetConnectionString("DefaultConnectionRemote"));
-        });
-
-        services.AddDbContext<UsersContext>(options =>
-        {
-            options.UseSqlServer(_configuration.GetConnectionString("DefaultConnectionRemote"));
-        });
-
-
         //Authentication
 
         services
@@ -97,6 +60,49 @@ public class Startup
 
             })
             .AddEntityFrameworkStores<UsersContext>();
+
+        // Add services to the container.
+
+        services.AddControllers();
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+       services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+
+
+
+
+        services.AddCors(ops =>
+                ops.AddPolicy("AllowAnyOrigins", builder => builder.AllowAnyOrigin()));
+
+        services.AddTransient<TokenManagerMiddleware>();
+        services.AddTransient<ITokenManagerService, TokenManagerService>();
+
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+        //Redis
+
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = _configuration.GetConnectionString("Redis");
+            options.InstanceName = "PetStoreApi";
+        });
+
+
+        //DbContext
+
+        services.AddDbContext<PetDbContext>(options =>
+        {
+            options.UseSqlServer(_configuration.GetConnectionString("DefaultConnectionRemote"));
+        });
+
+        services.AddDbContext<UsersContext>(options =>
+        {
+            options.UseSqlServer(_configuration.GetConnectionString("DefaultConnectionRemote"));
+        });
+
+
+     
     }
 
     public void Configure(WebApplication app, IWebHostEnvironment env)
@@ -111,13 +117,15 @@ public class Startup
 
         app.UseHttpsRedirection();
 
+        app.UseRouting();
 
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.UseMiddleware<TokenManagerMiddleware>();
 
-       app.MapControllers();
+        app.MapControllers();
+        //app.UseMiddleware<TokenManagerMiddleware>();
+
 
     }
 

@@ -8,6 +8,7 @@ namespace PetStoreApi.Controllers;
 
 
 [ApiController]
+[Authorize]
 public class ProductsController : ControllerBase
 {
     private readonly PetDbContext _context;
@@ -20,6 +21,8 @@ public class ProductsController : ControllerBase
         _context = context;
         _httpContextAccessor = httpContextAccessor;
     }
+
+    [AllowAnonymous]
     [HttpGet("api/products")]
     public async Task<IActionResult> GetProducts()
     {
@@ -27,17 +30,19 @@ public class ProductsController : ControllerBase
         
         return Ok(products);
     }
-    [Authorize]
+
     [HttpGet("api/products2")]
     public async Task<IActionResult> GetProducts2()
     {
         var products = await _context.Products.ToListAsync();
 
         var authorizationHeader = _httpContextAccessor
-           .HttpContext.Request.Headers["authorization"];
+           .HttpContext.Request.Headers;
 
 
-        await Console.Out.WriteLineAsync(authorizationHeader);
+        //await Console.Out.WriteLineAsync(authorizationHeader);
+
+        Console.WriteLine(authorizationHeader);
 
         return Ok(products);
     }

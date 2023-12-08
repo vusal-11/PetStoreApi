@@ -22,12 +22,13 @@ namespace PetStoreApi.Services
 
         public TokenManagerService(IDistributedCache cache,
                 IHttpContextAccessor httpContextAccessor,
+                IOptions<JwtOptions> jwtOptions,
                 IConfiguration configuration
             )
         {
             _cache = cache;
-            _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<bool> IsCurrentActiveToken()
@@ -73,7 +74,11 @@ namespace PetStoreApi.Services
                 expiration
                 );
             var tokenHandler = new JwtSecurityTokenHandler();
-            return tokenHandler.WriteToken(token);
+           var generateToken = tokenHandler.WriteToken(token);
+
+       
+
+            return generateToken;
         }
 
         private JwtSecurityToken CreateJwtToken(List<Claim> claims, SigningCredentials credentials,
@@ -135,10 +140,10 @@ namespace PetStoreApi.Services
 
         }
 
-        public async Task<bool> IsCurrentActiveTokenAsync() => await IsActiveAsync(GetCurrentAsync()); 
-        
-        
+        public async Task<bool> IsCurrentActiveTokenAsync() => await IsActiveAsync(GetCurrentAsync());
 
-    
+
+
+
     }
 }
